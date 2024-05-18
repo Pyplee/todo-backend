@@ -3,7 +3,8 @@
 import Express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import path from 'path';
+import cors from 'cors';
+// import path from 'path';
 // import methodOverride from 'method-override';
 
 import Card from './entities/Card.js';
@@ -18,6 +19,10 @@ export default () => {
   // app.use(methodOverride('_method'));
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  app.use(cors({
+    origin: 'http://localhost:3000', // Replace with your frontend application's URL
+    optionsSuccessStatus: 200,
+  }));
 
   let cards = [
     new Card('Home'),
